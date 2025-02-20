@@ -12,7 +12,7 @@ data class FireVendingMachine(
     val kioskSerialNumber: String = "",
     val merchantCode: String = "",
     val merchantKey: String = "",
-    val fid: String = "",
-    val mid: String = "",
+    val franchiseId: String = "",
+    val machineId: String = "",
     val totalLog: Int = 0
 )

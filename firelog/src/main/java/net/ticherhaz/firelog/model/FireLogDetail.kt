@@ -1,6 +1,6 @@
 package net.ticherhaz.firelog.model
 
-data class FireLog(
+data class FireLogDetail(
     val fireLogId: String = "",
     val deviceFirebaseId: String = "",
     val className: String = "",

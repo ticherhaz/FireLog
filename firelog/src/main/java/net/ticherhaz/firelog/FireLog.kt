@@ -11,15 +11,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import net.ticherhaz.firelog.model.FireLog
+import net.ticherhaz.firelog.model.FireLogDetail
 import net.ticherhaz.firelog.model.FireVendingMachine
 
 object FireLog {
 
     private const val TAG = "FireLog"
     private const val FIRE_LOG_ROOT = "FireLog"
+    private const val FIRE_LOG_DETAIL_NODE = "FireLogDetail"
     private const val VENDING_MACHINE_NODE = "FireVendingMachine"
-    private const val LOG_DETAIL_NODE = "FireLogDetail"
 
     enum class VendingMachineType {
         VENDING_MACHINE_M3,
@@ -35,7 +35,7 @@ object FireLog {
     private var isDebugEnabled = false
 
     /**
-     * Initializes the FireLog with device information and writes it to Firebase.
+     * Initializes the FireLogDetail with device information and writes it to Firebase.
      * @param context Application context
      * @param vendingMachineType Type of vending machine
      * @param debugEnabled Set true to disable Firebase logging (default: false)
@@ -81,8 +81,8 @@ object FireLog {
     fun updateKioskSerialNumber(kioskSerialNumber: String) = updateConfiguration("kioskSerialNumber", kioskSerialNumber)
     fun updateMerchantCode(merchantCode: String) = updateConfiguration("merchantCode", merchantCode)
     fun updateMerchantKey(merchantKey: String) = updateConfiguration("merchantKey", merchantKey)
-    fun updateFid(fid: String) = updateConfiguration("fid", fid)
-    fun updateMid(mid: String) = updateConfiguration("mid", mid)
+    fun updateFranchiseId(fid: String) = updateConfiguration("franchiseId", fid)
+    fun updateMachineId(mid: String) = updateConfiguration("machineId", mid)
 
     /**
      * Logs a message to Firebase with automatic timestamp
@@ -109,7 +109,7 @@ object FireLog {
                     return@launch
                 }
 
-                val logEntry = FireLog(
+                val logEntry = FireLogDetail(
                     fireLogId = logId,
                     deviceFirebaseId = deviceId,
                     className = className,
@@ -158,7 +158,7 @@ object FireLog {
         Firebase.database.reference.child(FIRE_LOG_ROOT).child(VENDING_MACHINE_NODE).child(deviceId)
 
     private fun getLogDetailRef(deviceId: String) =
-        Firebase.database.reference.child(FIRE_LOG_ROOT).child(LOG_DETAIL_NODE).child(deviceId)
+        Firebase.database.reference.child(FIRE_LOG_ROOT).child(FIRE_LOG_DETAIL_NODE).child(deviceId)
 
     private suspend fun incrementTotalLogs(deviceId: String) {
         getVendingMachineRef(deviceId).child("totalLog")
