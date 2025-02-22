@@ -6,10 +6,13 @@ data class FireVendingMachine(
     val versionName: String = "",
     val versionCode: String = "",
     val vendingMachineType: String = "",
-    //outletId, secretKey, and kioskSerialNumber are for M5 Dobi
+    //outletId, secretKey, gatewayId, washingDeviceId and kioskSerialNumber are for M5 Dobi
     val outletId: String = "",
     val secretKey: String = "",
+    val gatewayId: String = "",
+    val washingDeviceId: String = "",
     val kioskSerialNumber: String = "",
+    //-------------------------------------
     val merchantCode: String = "",
     val merchantKey: String = "",
     val franchiseId: String = "",

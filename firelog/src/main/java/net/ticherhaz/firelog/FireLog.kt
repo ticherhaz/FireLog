@@ -1,4 +1,5 @@
 package net.ticherhaz.firelog
+
 import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
@@ -78,7 +79,13 @@ object FireLog {
     /* Configuration updaters */
     fun updateOutletId(outletId: String) = updateConfiguration("outletId", outletId)
     fun updateSecretKey(secretKey: String) = updateConfiguration("secretKey", secretKey)
-    fun updateKioskSerialNumber(kioskSerialNumber: String) = updateConfiguration("kioskSerialNumber", kioskSerialNumber)
+    fun updateGatewayId(gatewayId: String) = updateConfiguration("gatewayId", gatewayId)
+    fun updateWashingDeviceId(washingDeviceId: String) =
+        updateConfiguration("washingDeviceId", washingDeviceId)
+
+    fun updateKioskSerialNumber(kioskSerialNumber: String) =
+        updateConfiguration("kioskSerialNumber", kioskSerialNumber)
+
     fun updateMerchantCode(merchantCode: String) = updateConfiguration("merchantCode", merchantCode)
     fun updateMerchantKey(merchantKey: String) = updateConfiguration("merchantKey", merchantKey)
     fun updateFranchiseId(fid: String) = updateConfiguration("franchiseId", fid)
@@ -116,6 +123,7 @@ object FireLog {
                     function = functionName,
                     messageInfo = message,
                     messageDetail = details,
+                    createdDate = System.currentTimeMillis().toString(),
                     logType = logType.name
                 )
 
@@ -145,7 +153,7 @@ object FireLog {
 
         coroutineScope.launch {
             try {
-                getVendingMachineRef(getFirebaseId()).updateChildren(mapOf(key to value))
+                getVendingMachineRef(getFirebaseId()).child(key).setValue(value)
             } catch (e: Exception) {
                 Log.e(TAG, "Configuration update failed for $key", e)
             }
