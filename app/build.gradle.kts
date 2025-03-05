@@ -11,8 +11,8 @@ android {
         applicationId = "net.ticherhaz.firelog"
         minSdk = 21
         targetSdk = 35
-        versionCode = 111
-        versionName = "1.1.1"
+        versionCode = 115
+        versionName = "1.1.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

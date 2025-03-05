@@ -17,5 +17,6 @@ data class FireVendingMachine(
     val merchantKey: String = "",
     val franchiseId: String = "",
     val machineId: String = "",
-    val totalLog: Int = 0
+    val totalLog: Int = 0,
+    val createdDate: String = System.currentTimeMillis().toString()
 )

@@ -16,6 +16,6 @@ dependencyResolutionManagement {
 }
 
 dependencies { 
-    implementation("com.github.ticherhaz:FireLog:1.1.0")
+    implementation("com.github.ticherhaz:FireLog:1.1.5")
 }
 ```
