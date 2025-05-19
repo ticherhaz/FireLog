@@ -33,21 +33,16 @@ object FireLog {
     enum class LogType { INFO, ERROR }
 
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
-    private var isDebugEnabled = false
 
     /**
      * Initializes the FireLogDetail with device information and writes it to Firebase.
      * @param context Application context
      * @param vendingMachineType Type of vending machine
-     * @param debugEnabled Set true to disable Firebase logging (default: false)
      */
     fun initialize(
         context: Context,
-        vendingMachineType: VendingMachineType,
-        debugEnabled: Boolean = false
+        vendingMachineType: VendingMachineType
     ) {
-        isDebugEnabled = debugEnabled
-        if (isDebugEnabled) return
 
         coroutineScope.launch {
             try {
@@ -106,8 +101,6 @@ object FireLog {
         message: String,
         details: String = ""
     ) {
-        if (isDebugEnabled) return
-
         coroutineScope.launch {
             try {
                 val deviceId = getFirebaseId()
@@ -149,8 +142,6 @@ object FireLog {
     }
 
     private fun updateConfiguration(key: String, value: Any) {
-        if (isDebugEnabled) return
-
         coroutineScope.launch {
             try {
                 getVendingMachineRef(getFirebaseId()).child(key).setValue(value)
