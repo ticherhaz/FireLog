@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
 import androidx.core.content.pm.PackageInfoCompat
+import com.google.firebase.Firebase
 import com.google.firebase.database.ServerValue
-import com.google.firebase.database.ktx.database
+import com.google.firebase.database.database
 import com.google.firebase.installations.FirebaseInstallations
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,7 +27,8 @@ object FireLog {
         VENDING_MACHINE_M4,
         VENDING_MACHINE_M5,
         VENDING_MACHINE_M5_FLORIST,
-        VENDING_MACHINE_M5_DOBI
+        VENDING_MACHINE_M5_DOBI,
+        VENDING_MACHINE_M5_MINI
     }
 
     enum class LogType { INFO, ERROR }

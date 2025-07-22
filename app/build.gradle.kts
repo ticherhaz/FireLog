@@ -1,3 +1,5 @@
+import jdk.tools.jlink.resources.plugins
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,14 +7,14 @@ plugins {
 
 android {
     namespace = "net.ticherhaz.firelog"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "net.ticherhaz.firelog"
         minSdk = 21
-        targetSdk = 35
-        versionCode = 116
-        versionName = "1.1.6"
+        targetSdk = 36
+        versionCode = 117
+        versionName = "1.1.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
